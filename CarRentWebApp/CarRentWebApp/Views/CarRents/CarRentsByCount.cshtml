@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CarRentWebApp.Models.CarRentCount>
+@inject SignInManager<IdentityUser> signInManager
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+        initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="
+        sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap-theme.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <h4 class="fas fa-car text-primary" id="carRentIcon"></h4><span class="text-primary"> Car Rent </span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li><a href="/CarRents/Index">Car Rents</a></li>
+                    <li>
+                        <a href="#" class="btn active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="nav-label">Rent Reports</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/CarRents/CarRentsByCount" class="btn">Cars rents</a></li>
+                            <li><a href="/Customers/CustomersByCount" class="btn">Costumers rents</a></li>
+                        </ul>
+                    <li><a href="/Customers/Index">Clients</a></li>
+                    <li><a href="/ListAvailableCars/Index" class="btn">List of Available cars</a></li>
+                    <li><a href="/Home/About">About</a></li>
+                    <li><a href="/MailSender/Index" class="btn">Contact</a></li>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <li><a href="/Administration/ListRoles" class="btn">Roles</a></li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-action="logout" asp-controller="account">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="height:10px;">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+<h2>The list with the most rented cars.</h2>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
