@@ -1,0 +1,126 @@
+﻿@inject SignInManager<IdentityUser> signInManager
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap-theme.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/contact.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="allButtonsNavBar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Home/Index" class="btn">Home</a></li>
+                    <li><a href="/CarRents/Index" class="btn">Car Rents</a></li>
+                    <li>
+                        <a href="#" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="nav-label">Rent Reports</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/CarRents/CarRentsByCount" class="btn">Cars rents</a></li>
+                            <li><a href="/Customers/CustomersByCount" class="btn">Costumers rents</a></li>
+                        </ul>
+                    <li><a href="/Customers/Index" class="btn">Clients</a></li>
+                    <li><a href="/ListAvailableCars/Index" class="btn">List of available cars</a></li>
+                    <li><a href="/Home/About" class="btn">About</a></li>
+                    <li><a href="/MailSender/Index" class="btn active">Contact</a></li>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <li><a href="/Administration/ListRoles" class="btn">Roles</a></li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-action="logout" asp-controller="account">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="height:10px;">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <hr />
+    <div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
+        <div class="container-contact2">
+            <div class="wrap-contact2">
+                <span class="contact2-form-title">
+                    Contact Us
+                </span>
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    <input class="input2" type="text" id="name">
+                    <span class="focus-input2" data-placeholder="NAME"></span>
+                </div>
+                <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input2" type="text" id="email">
+                    <span class="focus-input2" data-placeholder="EMAIL"></span>
+                </div>
+                <div class="container-contact2-form-btn">
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn" onclick="SendEmail()">
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--===============================================================================================-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/mailSender.js"></script>
+    <script>
+    function SendEmail(){
+      $.ajax(
+      {
+        type: "POST",
+        url: '@Url.Action("SendEmail", "MailSender")',
+        data: {
+          Name: $("#name").val(),
+          Email: $("#email").val(),
+        },
+        error: function (result) {
+          console.log(result);
+        },
+        success: function (result) {
+          alert(result);
+          $("#name").val("");
+          $("#email").val("");
+        }
+      });
+    }
+    </script>
+</body>

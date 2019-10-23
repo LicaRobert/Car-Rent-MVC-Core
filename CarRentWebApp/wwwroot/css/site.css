@@ -1,0 +1,106 @@
+﻿
+body {
+    background-image: url("/images/rent-car.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.table {
+    
+    font-family: "Roboto", helvetica, arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+
+
+.container th h1 {
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: #185875;
+}
+
+.container td {
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #00FF00;
+    -moz-box-shadow: 0 2px 2px -2px #00FF00;
+    box-shadow: 0 2px 2px -2px #00FF00;
+}
+
+
+
+    .container td, .container th {
+        padding-bottom: 2%;
+        padding-top: 2%;
+        padding-left: 2%;
+    }
+
+  
+
+    .container tr:hover {
+        background-color: #7B68EE;
+        -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+        box-shadow: 0 6px 6px -6px #0E1119;
+    }
+
+a {
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+.container td:hover {
+    background-color: #F0F8FF;
+    color: #A9A9A9;
+    font-weight: bold;
+    box-shadow: #F0F8FF -1px 1px, #FFFAFA -2px 2px, #FFFAFA -3px 3px, #6A5ACD -4px 4px, #6A5ACD -5px 5px, #6A5ACD -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(189, 108, 108, 0.42) 
+}
+.table {
+    color: rgba(0, 0, 0, 0.72)
+}
+#carRentIcon {
+    line-height: 20px;
+    padding: 5px;
+
+}
+
+.nav navbar-nav {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+
+.active, .nav navbar-nav:hover {
+  background-color: #666;
+  color: white;
+ }
+
+.active {
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}

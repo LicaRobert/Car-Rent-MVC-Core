@@ -1,0 +1,104 @@
+﻿@inject  SignInManager<IdentityUser> signInManager
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="~/css/home.css">
+<link rel="stylesheet" type="text/css" href="~/css/site.css">
+<link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap-theme.css">
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <h4 class="fas fa-car text-primary" id="carRentIcon"></h4><span class="text-primary" id="carRentIcon"> Car Rent </span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" id="navBarButtons">
+                    <li><a href="/Home/Index" class="btn active">Home</a></li>
+                    <li><a href="/CarRents/Index" class="btn">Car Rents</a></li>
+                    <li>
+                        <a href="#" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="nav-label">Rent Reports</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/CarRents/CarRentsByCount" class="btn">Cars rents</a></li>
+                            <li><a href="/Customers/CustomersByCount" class="btn">Costumers rents</a></li>
+                        </ul>
+                    <li><a href="/Customers/Index" class="btn">Clients</a></li>
+                    <li><a href="/ListAvailableCars/Index" class="btn">List of available cars</a></li>
+                    <li><a href="/Home/About" class="btn">About</a></li>
+                    <li><a href="/MailSender/Index" class="btn">Contact</a></li>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <li><a href="/Administration/ListRoles" class="btn">Roles</a></li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-action="logout" asp-controller="account">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="height:10px;">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <hr />
+
+    <!-- Header -->
+    <header class="w3-container w3-red w3-center" style="padding:80px 16px">
+        <h1 class="w3-margin w3-jumbo">Welcome to RentC</h1>
+        <h2 class="w3-margin w3-jumbo">The best choice</h2>
+        <h3 class="w3-margin w3-jumbo"><i class="fas fa-car" aria-hidden="true"></i> <i class="fas fa-car" aria-hidden="true"></i></h3>
+    </header>
+
+
+    <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+        <div class="w3-content">
+            <div class="w3-third w3-center">
+                <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+            </div>
+
+            <div class="w3-twothird">
+                <h1>What do I need to rent a car?</h1>
+                <h3 class="w3-padding-32">Come and visit our dealership.</h3>
+
+                <p class="w3-text-grey">
+                    - To book your car, all you need is a credit or debit card. When you pick the car up, you'll need:
+                    <br />
+                    - Your voucher / eVoucher, to show that you've paid for the car.
+                    <br />
+                    - The main driver's credit / debit card, with enough available funds for the car's deposit.
+                    <br />
+                    - Each driver's full, valid driving licence, which they've held for at least 12 months (often 24).
+                    <br />
+                    - Your passport and any other ID the car rental company needs to see.
+                    <br />
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center">
+        <div class="info-icons p-2">
+            <a href="https://www.facebook.com/vehiclerentcom/" class="mr-2 primary-color"><i class="fab fa-facebook fa-4x"> Visit our Facebook. </i></a>
+        </div>
+    </footer>
+</body>

@@ -1,0 +1,176 @@
+﻿@inject SignInManager<IdentityUser> signInManager
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+        initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="
+        sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap-theme.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/about-us.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<hr />
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <h4 class="fas fa-car text-primary" id="carRentIcon"></h4><span class="text-primary" id="carRentIcon"> Car Rent </span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Home/Index" class="btn">Home</a></li>
+                    <li><a href="/CarRents/Index" class="btn">Car Rents</a></li>
+                    <li>
+                        <a href="#" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="nav-label">Rent Reports</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/CarRents/CarRentsByCount" class="btn">Cars rents</a></li>
+                            <li><a href="/Customers/CustomersByCount" class="btn">Costumers rents</a></li>
+                        </ul>
+                    <li><a href="/Customers/Index" class="btn">Clients</a></li>
+                    <li><a href="/ListAvailableCars/Index" class="btn">List of available cars</a></li>
+                    <li><a href="/Home/About" class="btn active">About</a></li>
+                    <li><a href="/MailSender/Index" class="btn">Contact</a></li>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <li><a href="/Administration/ListRoles" class="btn">Roles</a></li>
+                    }
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-action="logout" asp-controller="account">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="height:10px;">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+<div class="ct-pageWrapper" id="ct-js-wrapper">
+    <section class="company-heading intro-type" id="parallax-one">
+        <div class="container">
+            <div class="row product-title-info">
+                <div class="col-md-12">
+                    <h1>About Us</h1>
+                </div>
+            </div>
+        </div>
+        <div class="parallax" id="parallax-cta" style="background-image:url(https://www.solodev.com/assets/hero/hero.jpg);"></div>
+    </section>
+    <section class="story-section company-sections ct-u-paddingBoth100 paddingBothHalf noTopMobilePadding" id="section">
+        <div class="container text-center">
+            <h2>Welcome to RentC</h2>
+            <h3>WHAT DRIVES US</h3>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="red-border"></div>
+                <p class="ct-u-size22 ct-u-fontWeight300 marginTop40">
+                    We want to make renting a car as simple and personal as driving your own.
+                    Renting a car brings you freedom, and we’ll help you find the right car for you at a great price.
+                    But there’s much more to us than that. We're here to make renting a car a lot less hassle.
+                </p>
+            </div>
+        </div>
+    </section>                <hr />
+    <section class="culture-section company-sections ct-u-paddingBoth100 paddingBothHalf noTopMobilePadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>That wonderful feeling – you start the engine and your adventure begins…</h3>
+                    <p class="ct-u-size22 ct-u-fontWeight300 ct-u-marginBottom60">
+                        At RentC everything we do is about giving you the freedom to discover more.
+                        We’ll move mountains to find you the right rental car, and bring you a smooth, hassle-free experience from start to finish.
+                        Here you can find out more about how we work.
+                    </p>
+                </div>
+            </div>
+            <hr />
+            <div class="row ct-u-paddingBoth20">
+                <div class="col-xs-6 col-md-4">
+                    <div class="company-icons-white">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <p>Search</p>
+                        <p>You search our site or our app for the car you want</p>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="company-icons-white">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                        <p>Compare</p>
+                        <p class="company-icons-subtext hidden-xs">We show you the deals and reviews you need to help you choose.</p>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="company-icons-white">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <p>Book</p>
+                        <p class="company-icons-subtext hidden-xs">
+                            You pick the car you want, add any extras you’d like
+                            – such as Full Protection (our extra cover) or a car seat – and book
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row ct-u-paddingBoth20">
+                <div class="col-xs-6 col-md-4">
+                    <hr />
+                    <div class="company-icons-white">
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                        <p>You're all set</p>
+                        <p class="company-icons-subtext hidden-xs">We confirm your booking with the car hire company you chose, and confirm everything back to you</p>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <hr />
+                    <div class="company-icons-white">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                        <p>Pick up a car</p>
+                        <p class="company-icons-subtext hidden-xs">You take the voucher (on paper or on your app), your credit card, driving licence and passport to pick up your car</p>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <hr />
+                    <div class="company-icons-white">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <p>Have a fantastic trip</p>
+                        <p class="company-icons-subtext hidden-xs">You drive away and start discovering…</p>
+                    </div>
+                </div>
+            </div>
+            <a class="ct-u-marginTop60 btn btn-solodev-red-reversed btn-fullWidth-sm ct-u-size19" href="https://www.rentalcarsconnect.com/">Ready to Learn More?</a>
+        </div>
+    </section>
+    <section class="customers-section company-sections ct-u-paddingBoth100 paddingBothHalf noTopMobilePadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2>RentC</h2>
+                    <h3>Trusted by some of the world’s leading brands.</h3>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
